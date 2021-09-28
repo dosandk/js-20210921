@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<script>
+  function log () {
+    const a = 1;
+
+    return function () {
+      console.error(a);
+    }
+  }
+
+  const fn = log();
+
+  fn();
+</script>
