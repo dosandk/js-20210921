@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body></body>
+
+<div id="root"></div>
+
+<script>
+  class Component {
+    constructor(title) {
+      this.title = title;
+      this.render();
+    }
+
+    render () {
+      const wrapper = document.createElement('div');
+
+      wrapper.innerHTML = `
+        <h1>
+          ${this.title}
+        </h1>
+      `;
+
+      this.element = wrapper.firstElementChild;
+    }
+
+    log () {
+      console.error('title', this.title);
+    }
+  }
+
+  const component = new Component('hello, World!');
+
+  const rootElement = document.getElementById('root');
+
+  rootElement.append(component.element);
+</script>
+

@@ -13,12 +13,12 @@ function createGetter(field) {
 const product = {
   category: {
     title: {
-      name: 'john'
+      name: 'John'
     }
   }
 }
 
-const getter = createGetter('category.title');
+const getter = createGetter('category.title.name.someProp');
 
 console.log(getter(product)); // { name: 'John'}
 ```
