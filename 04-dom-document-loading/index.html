@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+  <div id="root"></div>
+</body>
+
+<script>
+  class Notification {
+    static currentElement = 1;
+
+    subElement = {};
+
+    constructor(prop) {
+      console.error('prop', prop);
+      this.render();
+      this.getSubElements();
+    }
+
+    get template () {
+      return `<div style="color: greenyellow" data-element="foo">notification</div>`;
+    }
+
+    render () {
+      const wrapper = document.createElement('div');
+
+      wrapper.innerHTML = this.template;
+
+      this.element = wrapper.firstElementChild; // DOM
+    }
+
+    getSubElements() {
+      const elements = this.element.querySelectorAll('[data-element]');
+
+      for (const subElement of elements) {
+        const name = subElement.dataset.element;
+
+        this.subElement[name] = subElement;
+      }
+    }
+
+    // ...
+  }
+
+  console.error(Notification.currentElement);
+
+  class ErrorNotification extends Notification {
+    constructor(name) {
+      super(name);
+      this.name = name;
+    }
+
+    get template () {
+      return `<div style="color: darkred" data-element="bar">
+        <div>12312</div>
+      </div>`;
+    }
+
+    render () {
+      super.render();
+      console.error(this.element);
+    }
+  }
+
+  const obj = new ErrorNotification('John');
+  // ...
+  const obj = new ErrorNotification('John');
+  const obj = new ErrorNotification('John');
+  const obj = new ErrorNotification('John');
+
+  console.error(obj);
+</script>
