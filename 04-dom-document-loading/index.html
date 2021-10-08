@@ -38,8 +38,6 @@
         this.subElement[name] = subElement;
       }
     }
-
-    // ...
   }
 
   console.error(Notification.currentElement);
@@ -62,10 +60,42 @@
     }
   }
 
-  const obj = new ErrorNotification('John');
-  // ...
-  const obj = new ErrorNotification('John');
-  const obj = new ErrorNotification('John');
+  class WarningNotification extends Notification {
+    constructor(name) {
+      super(name);
+      this.name = name;
+    }
+
+    get template () {
+      return `<div style="color: darkred" data-element="bar">
+        <div>12312</div>
+      </div>`;
+    }
+
+    render () {
+      super.render();
+      console.error(this.element);
+    }
+  }
+
+  class SuperNotification extends WarningNotification {
+    constructor(name) {
+      super(name);
+      this.name = name;
+    }
+
+    get template () {
+      return `<div style="color: darkred" data-element="bar">
+        <div>12312</div>
+      </div>`;
+    }
+
+    render () {
+      super.render();
+      console.error(this.element);
+    }
+  }
+
   const obj = new ErrorNotification('John');
 
   console.error(obj);

@@ -1,4 +1,4 @@
-import SortableTable from '../solution/index.js';
+import SortableTable from './index.js';
 
 const data = [
   {
