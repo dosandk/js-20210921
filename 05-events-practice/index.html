@@ -8,26 +8,24 @@
 
 <script type="module">
   class Component {
-    onClick = event => {
-      console.error(111);
-    }
-
-    onPointerOver = event => {
-      console.error(111);
-    }
-
     constructor () {
+      this.onClick = this.onClick.bind(this);
 
-      this.render();
-      this.addEventListeners(); // foo
+      this.addEventListeners();
     }
 
-    render () {
+    onClick() {
+      console.error(111);
+    }
 
+    addEventListeners () {
+      document.addEventListener('click', this.onClick);
     }
 
     destroy () {
-      this.subElements.tooltip.removeEventListener('pointerover', this.onPointerOver)
+      document.removeEventListener('click', this.onClick);
     }
+
+
   }
 </script>
