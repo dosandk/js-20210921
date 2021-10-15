@@ -12,7 +12,7 @@
 * Повторение Шаблон "Делегирование"
 * Повторение Шаблон "Поведение"
 * Понятие асинхронного кода
-* Promises/async,await
+* `Promises/async,await`
 * `new URL()`, `searchParams`
 * Fetch API, `encodeURI`, `encodeURIComponent`
 * Custom events - связывание компонент

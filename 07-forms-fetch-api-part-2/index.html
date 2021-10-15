@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+  <button id="btn">Click me!</button>
+</body>
+
+<script>
+  btn.addEventListener('pointerdown', event => {
+    console.error(event);
+
+    btn.dispatchEvent(new CustomEvent('foo-bar', {
+      // bubbles: true,
+      detail: [1, 2, 3]
+    }));
+  });
+
+  const rangePicker = new RangePicker(...)
+
+  document.addEventListener('range-select', event => {
+    const { from, to } = event.detail;
+
+    sortableTable.update(from, to);
+  })
+
+</script>
