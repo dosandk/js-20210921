@@ -11,14 +11,26 @@ export default class Page {
   element;
   subElements = {};
   components = {};
+  url = new URL('api/dashboard/bestsellers', BACKEND_URL);
 
   async updateComponents (from, to) {
-    const data = await fetchJson(`${BACKEND_URL}api/dashboard/bestsellers?_start=1&_end=21&from=${from.toISOString()}&to=${to.toISOString()}&_sort=title&_order=asc`);
+    const data = await this.loadData(from, to);
 
     this.components.sortableTable.update(data);
     this.components.ordersChart.update(from, to);
     this.components.salesChart.update(from, to);
     this.components.customersChart.update(from, to);
+  }
+
+  loadData (from, to) {
+    this.url.searchParams.set('_start', '1');
+    this.url.searchParams.set('_end', '21');
+    this.url.searchParams.set('_sort', 'title');
+    this.url.searchParams.set('_order', 'asc');
+    this.url.searchParams.set('from', from.toISOString());
+    this.url.searchParams.set('from', to.toISOString());
+
+    return fetchJson(this.url);
   }
 
   initComponents () {
@@ -110,7 +122,7 @@ export default class Page {
     element.innerHTML = this.template;
 
     this.element = element.firstElementChild;
-    this.subElements.customersChart = this.getSubElements(this.element);
+    this.subElements = this.getSubElements(this.element);
 
     this.initComponents();
     this.renderComponents();
